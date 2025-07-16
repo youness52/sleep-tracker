@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
-import { Moon, BarChart3, ClipboardList } from "lucide-react-native";
 import React from "react";
+import { Feather } from '@expo/vector-icons'; // 👈 Import Feather
 import Colors from "@/constants/colors";
 
 export default function TabLayout() {
@@ -15,9 +15,11 @@ export default function TabLayout() {
         },
         headerStyle: {
           backgroundColor: Colors.dark.background,
+          
         },
         headerTitleStyle: {
           color: Colors.dark.text,
+        
         },
         tabBarLabelStyle: {
           fontSize: 12,
@@ -27,22 +29,31 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
+           headerShown: false,
           title: "Sleep",
-          tabBarIcon: ({ color }) => <Moon size={24} color={color} />,
+          tabBarIcon: ({ color }) => (
+            <Feather name="moon" size={24} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="history"
         options={{
+           headerShown: false,
           title: "History",
-          tabBarIcon: ({ color }) => <ClipboardList size={24} color={color} />,
+          tabBarIcon: ({ color }) => (
+            <Feather name="file-text" size={24} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="stats"
         options={{
+           headerShown: false,
           title: "Stats",
-          tabBarIcon: ({ color }) => <BarChart3 size={24} color={color} />,
+          tabBarIcon: ({ color }) => (
+            <Feather name="bar-chart-2" size={24} color={color} />
+          ),
         }}
       />
     </Tabs>

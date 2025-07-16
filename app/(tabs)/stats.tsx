@@ -4,24 +4,23 @@ import { useSleepStore } from '@/store/sleepStore';
 import SleepChart from '@/components/SleepChart';
 import { formatDuration } from '@/utils/date';
 import Colors from '@/constants/colors';
-import { Moon, Clock, Calendar } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons'; // 👈 Import Feather
 
 export default function StatsScreen() {
   const { sessions, getWeeklyStats, getMonthlyStats } = useSleepStore();
-  
+
   const weeklyStats = getWeeklyStats();
   const monthlyStats = getMonthlyStats();
-  
-  // Calculate overall stats
+
   const totalSleepTime = sessions.reduce(
     (total, session) => total + (session.duration || 0),
     0
   );
-  
-  const averageSleepTime = sessions.length > 0 
-    ? totalSleepTime / sessions.length 
+
+  const averageSleepTime = sessions.length > 0
+    ? totalSleepTime / sessions.length
     : 0;
-  
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -31,31 +30,31 @@ export default function StatsScreen() {
             {sessions.length} sleep {sessions.length === 1 ? 'session' : 'sessions'} recorded
           </Text>
         </View>
-        
+
         <View style={styles.overviewContainer}>
           <View style={styles.overviewItem}>
             <View style={styles.iconContainer}>
-              <Clock size={24} color={Colors.dark.primary} />
+              <Feather name="clock" size={24} color={Colors.dark.primary} />
             </View>
             <Text style={styles.overviewValue}>
               {formatDuration(averageSleepTime)}
             </Text>
             <Text style={styles.overviewLabel}>Average Sleep</Text>
           </View>
-          
+
           <View style={styles.overviewItem}>
             <View style={styles.iconContainer}>
-              <Moon size={24} color={Colors.dark.primary} />
+              <Feather name="moon" size={24} color={Colors.dark.primary} />
             </View>
             <Text style={styles.overviewValue}>
               {formatDuration(totalSleepTime)}
             </Text>
             <Text style={styles.overviewLabel}>Total Sleep</Text>
           </View>
-          
+
           <View style={styles.overviewItem}>
             <View style={styles.iconContainer}>
-              <Calendar size={24} color={Colors.dark.primary} />
+              <Feather name="calendar" size={24} color={Colors.dark.primary} />
             </View>
             <Text style={styles.overviewValue}>
               {sessions.length}
@@ -63,11 +62,12 @@ export default function StatsScreen() {
             <Text style={styles.overviewLabel}>Sessions</Text>
           </View>
         </View>
-        
+
         <SleepChart />
-        
+
         <View style={styles.infoContainer}>
           <Text style={styles.infoTitle}>Sleep Quality Tips</Text>
+
           <View style={styles.tipContainer}>
             <Text style={styles.tipNumber}>1</Text>
             <View style={styles.tipContent}>
@@ -77,7 +77,7 @@ export default function StatsScreen() {
               </Text>
             </View>
           </View>
-          
+
           <View style={styles.tipContainer}>
             <Text style={styles.tipNumber}>2</Text>
             <View style={styles.tipContent}>
@@ -87,7 +87,7 @@ export default function StatsScreen() {
               </Text>
             </View>
           </View>
-          
+
           <View style={styles.tipContainer}>
             <Text style={styles.tipNumber}>3</Text>
             <View style={styles.tipContent}>
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.dark.background,
+    paddingTop:20,
   },
   scrollContent: {
     paddingVertical: 20,
